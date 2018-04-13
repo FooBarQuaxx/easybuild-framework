@@ -121,7 +121,7 @@ def run_cmd(cmd, log_ok=True, log_all=False, simple=False, inp=None, regexp=True
         cmd_msg = ' '.join(cmd)
     else:
         raise EasyBuildError("Unknown command type ('%s'): %s", type(cmd), cmd)
-
+    
     if log_output or (trace and build_option('trace')):
         # collect output of running command in temporary log file, if desired
         fd, cmd_log_fn = tempfile.mkstemp(suffix='.log', prefix='easybuild-run_cmd-')

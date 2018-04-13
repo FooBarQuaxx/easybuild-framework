@@ -70,6 +70,7 @@ from easybuild.tools.parallelbuild import submit_jobs
 from easybuild.tools.repository.repository import init_repository
 from easybuild.tools.testing import create_test_report, overall_test_report, regtest, session_state
 from easybuild.tools.version import this_is_easybuild
+from easybuild.tools.package.docker import package_docker
 
 _log = None
 
@@ -413,6 +414,10 @@ def main(args=None, logfile=None, do_build=None, testing=False, modtool=None):
     else:
         print_msg("No easyconfigs left to be built.", log=_log, silent=testing)
         ordered_ecs = []
+
+    if options.docker:
+        package_docker(ordered_ecs)
+        sys.exit(0)
 
     # creating/updating PRs
     if new_update_preview_pr:

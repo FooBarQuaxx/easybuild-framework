@@ -662,6 +662,16 @@ class EasyBuildOptions(GeneralOption):
         self.log.debug("unittest_options: descr %s opts %s" % (descr, opts))
         self.add_group_parser(opts, descr, prefix='unittest')
 
+    def docker_options(self):
+        descr = ("Docker options short description", "Docker options long description")
+        opts = OrderedDict({
+            'docker': ("Package software into docker image", None, 'store_true', False),
+            'docker-tag': ("Generated docker image tag", None, 'store', ''),
+        })
+
+        self.log.debug("docker_options: desc %s opts %s" % (descr, opts))
+        self.add_group_parser(opts, descr)
+
     def validate(self):
         """Additional validation of options"""
         error_msgs = []
